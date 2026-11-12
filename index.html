@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#11152b">
+  <title>LifeOS — Your Personal Workspace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="lifeOS.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="LifeOS home">
+        <span class="brand-mark">L</span>
+        <span class="brand-name">Life<span>OS</span><small>PERSONAL WORKSPACE</small></span>
+      </a>
+
+      <div class="nav-caption">WORKSPACE</div>
+      <nav class="nav" aria-label="Main navigation">
+        <button class="nav-btn active" data-page="dashboard"><span class="nav-icon">⌂</span><span>Dashboard</span></button>
+        <button class="nav-btn" data-page="notes"><span class="nav-icon">▤</span><span>Notes</span><span class="nav-count" id="nav-notes-count">0</span></button>
+        <button class="nav-btn" data-page="tasks"><span class="nav-icon">☷</span><span>Tasks</span><span class="nav-count" id="nav-tasks-count">0</span></button>
+        <button class="nav-btn" data-page="goals"><span class="nav-icon">◎</span><span>Goals</span></button>
+        <button class="nav-btn" data-page="habits"><span class="nav-icon">✳</span><span>Habits</span></button>
+        <button class="nav-btn" data-page="journal"><span class="nav-icon">▧</span><span>Journal</span></button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="sidebar-tip">
+          <span class="tip-spark">✦</span>
+          <p class="tip-title">Small steps, big change.</p>
+          <p class="tip-copy">Build a life that feels as good as it looks.</p>
+        </div>
+        <button class="theme-toggle" id="theme-toggle"><span>◐</span><span id="theme-label">Switch to dark mode</span></button>
+        <div class="sidebar-footer"><span class="status-dot"></span> Your space, your pace</div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow" id="topbar-date">YOUR PERSONAL WORKSPACE</p>
+          <p class="topbar-title" id="topbar-heading">Overview</p>
+        </div>
+        <div class="topbar-right">
+          <label class="search-box"><span>⌕</span><input id="global-search" type="search" placeholder="Search your workspace..." aria-label="Search"></label>
+          <div class="avatar" title="Your workspace">Y</div>
+        </div>
+      </header>
+
+      <div class="page-wrap">
+        <section id="dashboard" class="page active">
+          <div class="hero">
+            <div class="hero-content">
+              <p class="hero-kicker"><span class="live-dot"></span> YOUR DAY, YOUR WAY</p>
+              <h1 id="welcome-text">Make today count.</h1>
+              <p class="hero-subtitle">A little progress each day adds up to remarkable results.</p>
+              <div class="hero-meta"><span id="today-date"></span><span class="meta-divider">·</span><span id="day-progress-label">Your day starts here</span></div>
+            </div>
+            <div class="hero-art" aria-hidden="true"><div class="orb orb-one"></div><div class="orb orb-two"></div><div class="hero-ring"></div><div class="hero-star">✦</div></div>
+          </div>
+
+          <div class="section-heading"><div><p class="eyebrow">AT A GLANCE</p><h2>Your overview</h2></div><span class="subtle" id="overview-updated">Updated just now</span></div>
+          <div class="stats-grid">
+            <article class="stat-card"><div class="stat-top"><span class="stat-icon purple">▤</span><span class="stat-trend">YOUR IDEAS</span></div><p class="stat-value" id="total-notes">0</p><p class="stat-label">Total notes</p></article>
+            <article class="stat-card"><div class="stat-top"><span class="stat-icon mint">☷</span><span class="stat-trend">STAY ON TRACK</span></div><p class="stat-value" id="total-tasks">0</p><p class="stat-label">Total tasks</p></article>
+            <article class="stat-card"><div class="stat-top"><span class="stat-icon amber">◷</span><span class="stat-trend">TO DO</span></div><p class="stat-value" id="pending-tasks">0</p><p class="stat-label">Pending tasks</p></article>
+            <article class="stat-card"><div class="stat-top"><span class="stat-icon blue">◎</span><span class="stat-trend">YOUR AMBITION</span></div><p class="stat-value" id="total-goals">0</p><p class="stat-label">Active goals</p></article>
+          </div>
+
+          <div class="dashboard-grid">
+            <section class="panel today-panel">
+              <div class="panel-heading"><div><p class="eyebrow">FOCUS</p><h3>Today's tasks</h3></div><button class="text-link" data-page="tasks">View all →</button></div>
+              <div id="dashboard-tasks" class="dashboard-task-list"></div>
+              <button class="add-inline" data-page="tasks">＋ Add a task</button>
+            </section>
+            <section class="panel habit-panel">
+              <div class="panel-heading"><div><p class="eyebrow">CONSISTENCY</p><h3>Daily habits</h3></div><button class="text-link" data-page="habits">View all →</button></div>
+              <div id="dashboard-habits"></div>
+            </section>
+            <section class="panel recent-panel">
+              <div class="panel-heading"><div><p class="eyebrow">THOUGHTS & IDEAS</p><h3>Recent notes</h3></div><button class="text-link" data-page="notes">View all →</button></div>
+              <div id="dashboard-notes"></div>
+            </section>
+            <section class="panel goal-panel">
+              <div class="panel-heading"><div><p class="eyebrow">LOOKING AHEAD</p><h3>Goal progress</h3></div><button class="text-link" data-page="goals">View all →</button></div>
+              <div id="dashboard-goals"></div>
+            </section>
+          </div>
+          <div class="quick-strip"><div><span class="quick-icon">✦</span><div><strong>Make space for what matters.</strong><p>Capture a thought, plan a task, or reflect on your day.</p></div></div><div class="quick-actions"><button class="btn btn-ghost" data-page="journal">Write in journal</button><button class="btn btn-primary" data-page="tasks">＋ New task</button></div></div>
+        </section>
+
+        <section id="notes" class="page">
+          <div class="page-heading"><div><p class="eyebrow">CAPTURE YOUR THINKING</p><h1>Notes</h1><p class="page-description">Keep your ideas, plans, and important thoughts in one place.</p></div><span class="page-badge" id="notes-total-badge">0 notes</span></div>
+          <form id="note-form" class="panel editor-panel">
+            <div class="form-heading"><div><span class="form-icon purple">✎</span><div><h3 id="note-form-title">Create a note</h3><p>Save an idea before it slips away.</p></div></div><span class="optional-label">YOUR PRIVATE SPACE</span></div>
+            <input type="text" id="note-title" placeholder="Give your note a title..." maxlength="80" required>
+            <textarea id="note-content" placeholder="Start writing your thoughts..." rows="4" required></textarea>
+            <div class="form-footer"><span class="helper-text">Your notes are saved in this browser.</span><div class="button-row"><button type="button" class="btn btn-ghost hidden" id="note-cancel-btn">Cancel</button><button type="submit" class="btn btn-primary" id="note-submit-btn">Save note <span>→</span></button></div></div>
+          </form>
+          <div class="list-heading"><div><h2>All notes</h2><p>Your collection of thoughts</p></div><span class="subtle" id="notes-count-label">0 items</span></div>
+          <div id="notes-list" class="notes-grid"></div>
+        </section>
+
+        <section id="tasks" class="page">
+          <div class="page-heading"><div><p class="eyebrow">MAKE IT HAPPEN</p><h1>Tasks</h1><p class="page-description">Turn your plans into progress, one task at a time.</p></div><span class="page-badge" id="tasks-total-badge">0 tasks</span></div>
+          <form id="task-form" class="panel task-entry">
+            <span class="form-icon mint">＋</span><input type="text" id="task-input" placeholder="What needs to get done?" maxlength="120" required>
+            <select id="task-priority" aria-label="Task priority"><option value="normal">Normal</option><option value="high">High priority</option><option value="low">Low priority</option></select>
+            <input type="date" id="task-due" aria-label="Due date">
+            <button type="submit" class="btn btn-primary">Add task <span>→</span></button>
+          </form>
+          <div class="task-toolbar"><div class="filter-tabs" id="task-filters"><button class="filter-btn active" data-filter="all">All tasks</button><button class="filter-btn" data-filter="pending">Pending</button><button class="filter-btn" data-filter="completed">Completed</button></div><span class="subtle" id="task-progress-text"></span></div>
+          <ul id="tasks-list" class="tasks-list"></ul>
+        </section>
+
+        <section id="goals" class="page">
+          <div class="page-heading"><div><p class="eyebrow">THINK LONG TERM</p><h1>Goals</h1><p class="page-description">Give your ambitions a direction and track your progress.</p></div><span class="page-badge" id="goals-total-badge">0 goals</span></div>
+          <form id="goal-form" class="panel compact-form">
+            <div class="form-heading"><div><span class="form-icon blue">◎</span><div><h3>Create a goal</h3><p>Make your next milestone clear.</p></div></div></div>
+            <div class="form-row"><input id="goal-title" type="text" placeholder="e.g. Learn C++ programming" maxlength="90" required><input id="goal-target" type="number" min="1" max="100" value="100" aria-label="Target progress percentage"><input id="goal-due" type="date" aria-label="Target date"><button class="btn btn-primary" type="submit">Add goal</button></div>
+          </form>
+          <div id="goals-list" class="goals-grid"></div>
+        </section>
+
+        <section id="habits" class="page">
+          <div class="page-heading"><div><p class="eyebrow">BUILD YOUR ROUTINE</p><h1>Habits</h1><p class="page-description">Consistency is built through small actions repeated daily.</p></div><span class="page-badge" id="habits-total-badge">0 habits</span></div>
+          <form id="habit-form" class="panel task-entry">
+            <span class="form-icon amber">✳</span><input id="habit-name" type="text" placeholder="Add a daily habit..." maxlength="70" required>
+            <button type="submit" class="btn btn-primary">Add habit <span>→</span></button>
+          </form>
+          <div class="habit-date-card"><div><p class="eyebrow">DAILY CHECK-IN</p><h3 id="habit-today-label">Today's progress</h3></div><div class="habit-progress"><strong id="habit-progress-count">0/0</strong><div class="progress-track"><span id="habit-progress-bar"></span></div></div></div>
+          <div id="habits-list" class="habits-list"></div>
+        </section>
+
+        <section id="journal" class="page">
+          <div class="page-heading"><div><p class="eyebrow">PAUSE & REFLECT</p><h1>Daily journal</h1><p class="page-description">A quiet place to reflect, reset, and record your day.</p></div><span class="page-badge" id="journal-entry-count">0 entries</span></div>
+          <form id="journal-form" class="panel journal-editor">
+            <div class="journal-date"><span class="form-icon purple">▧</span><div><p class="eyebrow">TODAY'S ENTRY</p><h3 id="journal-date-label"></h3></div></div>
+            <label for="journal-mood">How are you feeling today?</label>
+            <div class="mood-options" id="mood-options">
+              <button type="button" class="mood-btn" data-mood="Great">☀️<span>Great</span></button>
+              <button type="button" class="mood-btn" data-mood="Good">🙂<span>Good</span></button>
+              <button type="button" class="mood-btn" data-mood="Okay">😐<span>Okay</span></button>
+              <button type="button" class="mood-btn" data-mood="Low">🌧️<span>Low</span></button>
+              <button type="button" class="mood-btn" data-mood="Stressed">🌪️<span>Stressed</span></button>
+            </div>
+            <label for="journal-content">What's on your mind?</label>
+            <textarea id="journal-content" rows="7" placeholder="Write freely. What happened today? What did you learn? What are you grateful for?"></textarea>
+            <div class="form-footer"><span class="helper-text">Only you can see what you write in this browser.</span><button class="btn btn-primary" type="submit">Save today's entry <span>→</span></button></div>
+          </form>
+          <div class="list-heading"><div><h2>Past entries</h2><p>Your journey, one day at a time</p></div></div>
+          <div id="journal-list" class="journal-list"></div>
+        </section>
+      </div>
+      <footer class="main-footer"><span>LifeOS</span><span>Designed for a more intentional life.</span><span>All data stays in your browser</span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="lifeOS.js"></script>
+</body>
+</html>
